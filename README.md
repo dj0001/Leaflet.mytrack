@@ -9,4 +9,4 @@ Leaflet.mytrack extends the Layer class. Adding your track to a leaflet map is a
 
 Provides a option **click** (default:false) to draw a track (with mouseclick).
 
-Todo: Upload track (comming soon)
+Done: Upload track
