@@ -53,7 +53,8 @@ var reader = new FileReader();
 reader.onload = function(e) {
 var gpx=JSON.parse(reader.result);
 
-L.geoJSON(gpx,{style:{color:"red"}}).addTo(thisLoader._map);
+var mt = L.geoJSON(gpx,{style:{color:"red"}}).addTo(thisLoader._map);
+thisLoader._map.fitBounds(mt.getBounds())   //fit bounds
 }
 reader.readAsText(files[0]) 
 		}
