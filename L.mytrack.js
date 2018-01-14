@@ -4,7 +4,8 @@ lng0: 0,  //prevent duplikates
 gpx: {"type": "LineString","coordinates": []},
 initialize: function(options) {L.setOptions(this, options);},
 onAdd: function(map) {this.myLayer=L.geoJSON().addTo(map); map.on(this.options.click?'click':'locationfound', this._onclick, this);},
-_onclick: function(e) {if(e.latlng.lng!=this.lng0) {this.lng0=e.latlng.lng; this.gpx.coordinates.push([e.latlng.lng,e.latlng.lat]); this.myLayer.addData(this.gpx); this._map.panTo([e.latlng.lat,e.latlng.lng])}}
+_onclick: function(e) {if(e.latlng.lng!=this.lng0)
+ {this.lng0=e.latlng.lng; this.gpx.coordinates.push([e.latlng.lng,e.latlng.lat]); this.myLayer.clearLayers(); this.myLayer.addData(this.gpx); this._map.panTo([e.latlng.lat,e.latlng.lng])}}
 });
 
 L.mytrack = function(options) {return new L.Mytrack(options);}; //L.mytrack = new L.Mytrack();
