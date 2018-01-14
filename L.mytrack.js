@@ -30,3 +30,34 @@ L.mytrack = function(options) {return new L.Mytrack(options);}; //L.mytrack = ne
 	L.control.watermark = function(opts) {
 		return new L.Control.Watermark(opts);
 	}
+
+		L.Control.Watermark2 = L.Control.extend({  //upload-button
+		onAdd: function(map) {var thisLoader = this;
+			var container = L.DomUtil.create('div');
+			var img = L.DomUtil.create('input','mc',container);
+			img.type = 'file'
+			img.id = "fileElem"
+			img.style.display = 'none'
+			img.accept = ".json"
+      img.addEventListener('change', function () {thisLoader._handleFiles(this.files)});  //L.DomEvent.on
+		
+		var lab = L.DomUtil.create('label','mc',container);
+		lab.setAttribute("for", "fileElem")
+		lab.textContent = "\u00A0\u2B06\u00A0"
+		lab.style.background = 'white'
+					
+			return container;
+		},
+		_handleFiles: function(files) {var thisLoader = this;
+var reader = new FileReader();
+reader.onload = function(e) {
+var gpx=JSON.parse(reader.result);
+
+L.geoJSON(gpx,{style:{color:"red"}}).addTo(thisLoader._map);
+}
+reader.readAsText(files[0]) 
+		}
+		//, onRemove: function(map) { }   // Nothing to do here
+	});
+
+	L.control.watermark2 = function(opts) {return new L.Control.Watermark2(opts);}
