@@ -39,7 +39,7 @@ L.mytrack = function(options) {return new L.Mytrack(options);}; //L.mytrack = ne
 			img.type = 'file'
 			img.id = "fileElem"
 			img.style.display = 'none'
-			img.accept = ".json"
+			img.accept = ".json,.gps"
       img.addEventListener('change', function () {thisLoader._handleFiles(this.files)});  //L.DomEvent.on
 		
 		var lab = L.DomUtil.create('label','mc',container);
@@ -51,9 +51,12 @@ L.mytrack = function(options) {return new L.Mytrack(options);}; //L.mytrack = ne
 		},
 		_handleFiles: function(files) {var thisLoader = this;
 var reader = new FileReader();
-reader.onload = function(e) {
-var gpx=JSON.parse(reader.result);
+reader.onload = function(e) {var tmp=reader.result
 
+if(files[0].name.slice(-4)==".gpx") {  //Gpx track
+tmp='{"type": "LineString","coordinates": ['+(tmp.replace(/lat="(.*?)" lon="(.*?)"/g,"[$2,$1]").match(/\[.*?\]/g)+"").replace('"','')+']}' }
+
+var gpx=JSON.parse(tmp);
 var mt = L.geoJSON(gpx,{style:{color:"red"}}).addTo(thisLoader._map);
 thisLoader._map.fitBounds(mt.getBounds())   //fit bounds
 }
