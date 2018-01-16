@@ -65,6 +65,7 @@ L.Control.Watermark2 = L.Control.extend({ //upload-button
     lab.textContent = "\u00A0\u2B06\u00A0"
     lab.style.background = 'white'
 
+    L.DomEvent.disableClickPropagation(container)
     return container;
   },
   _handleFiles: function(files) {
