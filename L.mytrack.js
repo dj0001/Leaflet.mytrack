@@ -1,6 +1,7 @@
 L.Mytrack = L.Layer.extend({
   options: {
-    click: false
+    click: false,
+    elevation: false
   }, //click or locationfound
   lng0: 0, //prevent duplikates
   gpx: {
@@ -16,7 +17,7 @@ L.Mytrack = L.Layer.extend({
   },
   _onclick: function(e) {
     if (e.latlng.lng != this.lng0) {
-      this.lng0 = e.latlng.lng; this.gpx.coordinates.push([e.latlng.lng, e.latlng.lat]);
+      this.lng0 = e.latlng.lng; this.gpx.coordinates.push(this.options.elevation &&e.altitude?[e.latlng.lng, e.latlng.lat, e.altitude]:[e.latlng.lng, e.latlng.lat]);
       this.myLayer.clearLayers(); this.myLayer.addData(this.gpx); this._map.panTo([e.latlng.lat, e.latlng.lng])
     }
   }
