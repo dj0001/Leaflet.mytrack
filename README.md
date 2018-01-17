@@ -7,7 +7,7 @@ Leaflet.mytrack extends the Layer class. Adding your track to a leaflet map is a
 
     var mytrack = L.mytrack().addTo(map);
 
-Provides a option **click** (default:false) to draw a track (with mouseclick)
+Provides a option **click** (default:false) to draw a track (with mouseclick)    
 and **elevation** (default:false) to record altitude.
 
 Done: Upload track
