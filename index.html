@@ -35,9 +35,18 @@
 
 	L.control.watermark({ position: 'bottomright' }).addTo(karte);  //download-button
 
-var mytrack=L.mytrack({click:location.search?true:false}).addTo(karte)  //{click:false}  //querstringparameter ?1 draw track  //must be named mytrack!
+var url=location.search.slice(1)
+var mytrack=L.mytrack({click:url==1?true:false, elevation:true}).addTo(karte)  //{click:false}  //querstringparameter ?1 draw track  //must be named mytrack!
 
 L.control.watermark2({ position: 'bottomleft' }).addTo(karte);  //upload-button
+
+function ajax(url) {
+  fetch(url).then(function(response) {response.json().then(function(data) {
+      var mt = L.geoJSON(data, {style: {color: "red"}}).addTo(karte); karte.fitBounds(mt.getBounds())
+    }) })
+}
+
+if(isNaN(url)) ajax(url)  //querstringparameter ?mytrack.json
 </script>
 </body>
 </html>
