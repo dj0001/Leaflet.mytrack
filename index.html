@@ -43,6 +43,9 @@ L.control.watermark2({ position: 'bottomleft' }).addTo(karte);  //upload-button
 function ajax(url) {
   fetch(url).then(function(response) {response.json().then(function(data) {
       var mt = L.geoJSON(data, {style: {color: "red"}}).addTo(karte); karte.fitBounds(mt.getBounds())
+      mt=mt.bindPopup(function (layer) { var fe=layer.feature.geometry.coordinates, tot=0
+       for (var i=0; i<fe.length-1; i++) {tot += L.latLng([fe[i][1],fe[i][0]]).distanceTo([fe[i+1][1],fe[i+1][0]])}
+      return (tot/1000).toFixed(3)+" km" })
     }) })
 }
 
