@@ -36,8 +36,9 @@ L.Control.Watermark = L.Control.extend({ //download-button
 
     return img;
   },
-  _download: function(ev) { var tmp=mytrack.gpx //must be named mytrack!
-  	  //tmp = {"type": "FeatureCollection","features": [{"type":"Feature","geometry": tmp }]}
+  _download: function(ev) { var tmp=this._map._layers  //mytrack.gpx //must be named mytrack!
+  	  for (var layer in tmp) {if (tmp[layer].gpx) {tmp=tmp[layer].gpx; break}}
+      //tmp = {"type": "FeatureCollection","features": [{"type":"Feature","geometry": tmp }]}
       if ('msSaveOrOpenBlob' in navigator) navigator.msSaveOrOpenBlob(new Blob([JSON.stringify(tmp)]), "mytrack.json"); //L.mytrack?
       else ev.target.href = "data:application/geo+json," + JSON.stringify(tmp)
     }
