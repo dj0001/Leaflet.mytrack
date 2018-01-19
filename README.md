@@ -20,4 +20,6 @@ and a method:
 | ------------- | ------------- | 
 | ajax(url)     | add geojson via fetch  |
 
-Done: Upload track
+Done: Upload track    
+Demo [draw](https://dj0001.github.io/Leaflet.mytrack/?1)    
+Demo [ajax](https://dj0001.github.io/Leaflet.mytrack/?../pwa/test/Fahrrad.gpx)
