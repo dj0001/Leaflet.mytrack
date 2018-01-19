@@ -31,7 +31,7 @@
 	}).addTo(karte);
 
 
-	karte.locate({watch: true, enableHighAccuracy: true});  //setView: true, , maxZoom: 16
+	karte.locate({watch: true, enableHighAccuracy: true});  //setView: true, , maxZoom: 16  //.stopLocate()
 
 	L.control.watermark({ position: 'bottomright' }).addTo(karte);  //download-button
 
