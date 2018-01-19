@@ -73,7 +73,7 @@ L.Control.Watermark2 = L.Control.extend({ //upload-button
   _handleFiles: function(files) {
       var thisLoader = this;
       var reader = new FileReader();
-      reader.onload = function(e) {thisLoader._add(reader.result,files[0].lastModifiedDate)}
+      reader.onload = function(e) {thisLoader._add(reader.result, new Date(files[0].lastModified))}  //Date
       reader.readAsText(files[0])
     },
     ajax: function(url) {
