@@ -10,3 +10,5 @@ Leaflet.mytrack extends the Layer class.
 | ------------- | ------------- | -----------  |
 | click         | false         |draw a track  |
 | elevation  | false  |record latitude  |
+
+The newest Readme is in [gh-pages](https://github.com/dj0001/Leaflet.mytrack/tree/gh-pages)
