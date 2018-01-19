@@ -22,5 +22,5 @@ and a method:
 
 Done: Upload track
 
-Demo [draw](https://dj0001.github.io/Leaflet.mytrack/?1)    
-Demo [ajax](https://dj0001.github.io/Leaflet.mytrack/?../pwa/test/Fahrrad.gpx)
+Draw [demo](https://dj0001.github.io/Leaflet.mytrack/?1)    
+Ajax [demo](https://dj0001.github.io/Leaflet.mytrack/?../pwa/test/Fahrrad.gpx)
