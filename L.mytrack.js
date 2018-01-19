@@ -73,19 +73,24 @@ L.Control.Watermark2 = L.Control.extend({ //upload-button
   _handleFiles: function(files) {
       var thisLoader = this;
       var reader = new FileReader();
-      reader.onload = function(e) {
-        var tmp = reader.result
-
-        if (files[0].name.slice(-4) == ".gpx") { //Gpx track
-          tmp = '{"type": "LineString","coordinates": [' + (tmp.replace(/lat="(.*?)" lon="(.*?)"/g, "[$2,$1]").match(/\[.*?\]/g) + "").replace('"', '') + ']}'
-        }
-
-        var gpx = JSON.parse(tmp);
-        var mt = L.geoJSON(gpx, {style: {color: "red"}
-        }).addTo(thisLoader._map);
-        thisLoader._map.fitBounds(mt.getBounds()) //fit bounds
-      }
+      reader.onload = function(e) {thisLoader._add(reader.result,files[0].lastModifiedDate)}
       reader.readAsText(files[0])
+    },
+    ajax: function(url) {
+      var thisLoader = this;
+      fetch(url).then(function(response) {response.text().then(function(data) {thisLoader._add(data,response.headers.get("Last-modified"))}
+    ) })
+    },
+    _add: function(data,lm) {
+      if(data[0]!="{") { //Gpx track
+          data = '{"type": "LineString","coordinates": [' + (data.replace(/lat="(.*?)" lon="(.*?)"/g, "[$2,$1]").match(/\[.*?\]/g) + "").replace('"', '') + ']}'
+        }
+      data = JSON.parse(data)
+      var mt = L.geoJSON(data, {style: {color: "red"}}).addTo(this._map); this._map.fitBounds(mt.getBounds())
+      
+      mt=mt.bindPopup(function (layer) { var fe=layer.feature.geometry.coordinates, tot=0
+       for (var i=0; i<fe.length-1; i++) {tot += L.latLng([fe[i][1],fe[i][0]]).distanceTo([fe[i+1][1],fe[i+1][0]])}
+      return (tot/1000).toFixed(3)+" km<br>&#x2195; "+(fe[fe.length-1][2]-fe[0][2]).toFixed(0)+" m<br>"+(lm||"") })
     }
     //, onRemove: function(map) { }   // Nothing to do here
 });
