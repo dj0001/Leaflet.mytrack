@@ -57,7 +57,7 @@ L.Control.Watermark2 = L.Control.extend({ //upload-button
     img.type = 'file'
     img.id = "fileElem"
     img.style.display = 'none'
-    img.accept = ".json,.gps"
+    img.accept = ".json,.gpx"
     img.addEventListener('change', function() {
       thisLoader._handleFiles(this.files)
     }); //L.DomEvent.on
