@@ -91,6 +91,14 @@ L.Control.Watermark2 = L.Control.extend({ //upload-button
       mt=mt.bindPopup(function (layer) { var fe=layer.feature.geometry.coordinates, tot=0
        for (var i=0; i<fe.length-1; i++) {tot += L.latLng([fe[i][1],fe[i][0]]).distanceTo([fe[i+1][1],fe[i+1][0]])}
       return (tot/1000).toFixed(3)+" km<br>&#x2195; "+(fe[fe.length-1][2]-fe[0][2]).toFixed(0)+" m<br>"+(lm||"") })
+      
+      var mp; mt.eachLayer(function (layer) {mp=layer.feature.geometry.coordinates});  //altitude
+      if(mp[0][2]) mp.forEach(function myFunction(item) {L.geoJSON({"type":"Point","coordinates":item},{
+       style:function(feature) {return {fillColor:"hsl("+-180/1000*(feature.geometry.coordinates[2]-1000)+", 100%, 50%)"}},  //500
+       pointToLayer: function (feature, latlng) {return L.circleMarker(latlng, {radius: 4,color: "#000",weight: 0,fillOpacity: 0.8})}  //1
+       }).addTo(karte);
+      })
+      
     }
     //, onRemove: function(map) { }   // Nothing to do here
 });
