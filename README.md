@@ -20,7 +20,9 @@ and a method:
 | ------------- | ------------- | 
 | ajax(url)     | add geojson via fetch  |
 
-Done: Upload track
-
 Draw [demo](https://dj0001.github.io/Leaflet.mytrack/?1)    
 Ajax [demo](https://dj0001.github.io/Leaflet.mytrack/?../pwa/test/Fahrrad.gpx)
+
+## Changelog
+Done: Upload track    
+21.01. show elevation (colored dots)
