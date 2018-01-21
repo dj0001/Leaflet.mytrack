@@ -1,7 +1,7 @@
 # Leaflet.mytrack
 track my way on a map and download it
 
-Demo https://dj0001.github.io/Leaflet.mytrack/
+Demo https://dj0001.github.io/Leaflet.mytrack/ (set display sleep to max)
 
 Leaflet.mytrack extends the Layer class. Adding your track to a leaflet map is as easy as:
 
@@ -27,4 +27,5 @@ Ajax [demo](https://dj0001.github.io/Leaflet.mytrack/?../pwa/test/Fahrrad.gpx)
 ## Changelog
 Done: Upload track    
 21.01. show elevation (colored dots)    
-21.01. add method upload
+21.01. add method upload    
+Todo: touch for wakelock
