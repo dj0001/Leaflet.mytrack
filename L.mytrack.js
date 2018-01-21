@@ -20,6 +20,13 @@ L.Mytrack = L.Layer.extend({
       this.lng0 = e.latlng.lng; this.gpx.coordinates.push(this.options.elevation &&e.altitude?[e.latlng.lng, e.latlng.lat, e.altitude]:[e.latlng.lng, e.latlng.lat]);
       this.myLayer.clearLayers(); this.myLayer.addData(this.gpx); this._map.panTo([e.latlng.lat, e.latlng.lng])
     }
+  },
+  upload: function(url) {
+   var xhr=new XMLHttpRequest(), fd = new FormData()
+   var blob = new Blob([JSON.stringify(this.gpx)], { type: "application/json"})
+   fd.append("myfile", blob, "mytrack.json")
+   xhr.open("POST", url, true)
+   xhr.send(fd)
   }
 });
 
@@ -52,6 +59,7 @@ L.control.watermark = function(opts) {
 L.Control.Watermark2 = L.Control.extend({ //upload-button
   onAdd: function(map) {
     var thisLoader = this;
+    this.mt=L.geoJSON("",{style: {color: "red"}}).addTo(map)
     var container = L.DomUtil.create('div');
     var img = L.DomUtil.create('input', 'mc', container);
     img.type = 'file'
@@ -86,7 +94,9 @@ L.Control.Watermark2 = L.Control.extend({ //upload-button
           data = '{"type": "LineString","coordinates": [' + (data.replace(/lat="(.*?)" lon="(.*?)"/g, "[$2,$1]").match(/\[.*?\]/g) + "").replace('"', '') + ']}'
         }
       data = JSON.parse(data)
-      var mt = L.geoJSON(data, {style: {color: "red"}}).addTo(this._map); this._map.fitBounds(mt.getBounds())
+      var mt=this.mt; //mt.clearLayers()
+      mt.addData(data)
+      this._map.panTo(mt.getBounds().getCenter())  //.fitBounds(mt.getBounds())
       
       mt=mt.bindPopup(function (layer) { var fe=layer.feature.geometry.coordinates, tot=0
        for (var i=0; i<fe.length-1; i++) {tot += L.latLng([fe[i][1],fe[i][0]]).distanceTo([fe[i+1][1],fe[i+1][0]])}
