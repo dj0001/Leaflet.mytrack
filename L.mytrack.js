@@ -94,6 +94,8 @@ L.Control.Watermark2 = L.Control.extend({ //upload-button
           data = '{"type": "LineString","coordinates": [' + (data.replace(/lat="(.*?)" lon="(.*?)"/g, "[$2,$1]").match(/\[.*?\]/g) + "").replace('"', '') + ']}'
         }
       data = JSON.parse(data)
+      if(data.latitude) data = { "type": "Point","coordinates": [data.longitude, data.latitude] }  //read json
+      
       var mt=this.mt; //mt.clearLayers()
       mt.addData(data)
       this._map.panTo(mt.getBounds().getCenter())  //.fitBounds(mt.getBounds())
