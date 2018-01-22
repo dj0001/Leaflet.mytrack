@@ -41,7 +41,7 @@ var mytrack=L.mytrack({click:url==1?true:false, elevation:true}).addTo(karte)  /
 var upbu = L.control.watermark2({ position: 'bottomleft' }).addTo(karte);  //upload-button
 
 if(isNaN(url)) upbu.ajax(url)  //querstringparameter ?mytrack.json
-//setInterval(function(){upbu.ajax("https://wanderdrone.appspot.com")}, 3000)
+//setInterval(function(){upbu.ajax("https://api.wheretheiss.at/v1/satellites/25544")}, 3000)  //https://wanderdrone.appspot.com
 //setInterval(function(){mytrack.upload("upload/")}, 300000)  //upload int 5min
 </script>
 </body>
