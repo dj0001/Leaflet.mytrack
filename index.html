@@ -43,7 +43,7 @@ var upbu = L.control.watermark2({ position: 'bottomleft' }).addTo(karte);  //upl
 if(isNaN(url)) upbu.ajax(url)  //querstringparameter ?mytrack.json
 //setInterval(function(){upbu.ajax("https://api.wheretheiss.at/v1/satellites/25544")}, 3000)  //https://wanderdrone.appspot.com
 //setInterval(function(){mytrack.upload("upload/")}, 300000)  //upload int 5min
-upbu._container.addEventListener("click", function(){wakelock = new upbu.Wakelock(); wakelock.request()})  //longtouch
+upbu._container.addEventListener("click", function(){wakelock = new upbu.Wakelock(); wakelock.request()})
 </script>
 </body>
 </html>
