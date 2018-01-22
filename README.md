@@ -20,6 +20,7 @@ and a method:
 | ------------- | ------------- | 
 | ajax(url)     | add geojson via fetch  |
 | upload(url)   | upload geojson to server |
+| Wakelock()   | stay display on |
 
 Draw [demo](https://dj0001.github.io/Leaflet.mytrack/?1)    
 Ajax [demo](https://dj0001.github.io/Leaflet.mytrack/?../pwa/test/Fahrrad.gpx)
@@ -28,4 +29,4 @@ Ajax [demo](https://dj0001.github.io/Leaflet.mytrack/?../pwa/test/Fahrrad.gpx)
 Done: Upload track    
 21.01. show elevation (colored dots)    
 21.01. add method upload    
-Todo: touch for wakelock
+22.01. touch for wakelock
