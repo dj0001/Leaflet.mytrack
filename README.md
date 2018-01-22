@@ -1,7 +1,7 @@
 # Leaflet.mytrack
 track my way on a map and download it
 
-Demo https://dj0001.github.io/Leaflet.mytrack/ (set display sleep to max)
+Demo https://dj0001.github.io/Leaflet.mytrack/ (set display sleep to max and wait for gps)
 
 Leaflet.mytrack extends the Layer class. Adding your track to a leaflet map is as easy as:
 
