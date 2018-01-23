@@ -36,7 +36,7 @@ L.Control.Watermark = L.Control.extend({ //download-button
   onAdd: function(map) {
     var img = L.DomUtil.create('div');
     img.innerHTML = "<a download='mytrack.json'>&nbsp;&#x2b07;&nbsp;</a>" //img.src = 'icons/search.png';
-    img.style.background = 'white'; //img.style.width = '200px';
+    img.classList.add("leaflet-bar")  //img.style.background = 'white'
 
     L.DomEvent.on(img, 'click', this._download, this); //_download
     L.DomEvent.disableClickPropagation(img)
@@ -62,6 +62,7 @@ L.Control.Watermark2 = L.Control.extend({ //upload-button
     this.mt=L.geoJSON("",{style: {color: "red"}}).addTo(map)
     this.wakelock = new this.Wakelock()
     var container = L.DomUtil.create('div');
+    container.setAttribute("style", "height:26px; width:26px; background:#fff; text-align:center")
     var img = L.DomUtil.create('input', 'mc', container);
     img.type = 'file'
     img.id = "fileElem"
@@ -74,7 +75,7 @@ L.Control.Watermark2 = L.Control.extend({ //upload-button
     var lab = L.DomUtil.create('label', 'mc', container);
     lab.setAttribute("for", "fileElem")
     lab.textContent = "\u00A0\u2B06\u00A0"
-    lab.style.background = 'white'
+    //lab.style.background = 'white'
 
     L.DomEvent.disableClickPropagation(container)
     return container;
