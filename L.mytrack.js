@@ -60,6 +60,7 @@ L.Control.Watermark2 = L.Control.extend({ //upload-button
   onAdd: function(map) {
     var thisLoader = this;
     this.mt=L.geoJSON("",{style: {color: "red"}}).addTo(map)
+    this.wakelock = new this.Wakelock()
     var container = L.DomUtil.create('div');
     var img = L.DomUtil.create('input', 'mc', container);
     img.type = 'file'
