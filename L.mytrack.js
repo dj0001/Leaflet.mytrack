@@ -67,7 +67,7 @@ L.Control.Watermark2 = L.Control.extend({ //upload-button
     img.type = 'file'
     img.id = "fileElem"
     img.style.display = 'none'
-    img.accept = ".json,.gpx"
+    img.accept = ".json,.gpx,.geojson"
     img.addEventListener('change', function() {
       thisLoader._handleFiles(this.files)
     }); //L.DomEvent.on
@@ -108,7 +108,7 @@ L.Control.Watermark2 = L.Control.extend({ //upload-button
       
       var mp; mt.eachLayer(function (layer) {mp=layer.feature.geometry.coordinates});  //altitude
       if(mp[0][2]) mp.forEach(function myFunction(item) {L.geoJSON({"type":"Point","coordinates":item},{
-       style:function(feature) {return {fillColor:"hsl("+-180/1000*(feature.geometry.coordinates[2]-1000)+", 100%, 50%)"}},  //500
+       style:function(feature) {return {fillColor:"hsl("+(180-Math.atan(feature.geometry.coordinates[2]/1000)/Math.PI*360)+", 100%, 50%)"}},  //500
        pointToLayer: function (feature, latlng) {return L.circleMarker(latlng, {radius: 4,color: "#000",weight: 0,fillOpacity: 0.8})}  //1
        }).addTo(karte);
       })
