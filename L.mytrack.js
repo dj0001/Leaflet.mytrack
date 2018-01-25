@@ -19,6 +19,7 @@ L.Mytrack = L.Layer.extend({
     if (e.latlng.lng != this.lng0) {
       this.lng0 = e.latlng.lng; this.gpx.coordinates.push(this.options.elevation &&e.altitude?[e.latlng.lng, e.latlng.lat, e.altitude]:[e.latlng.lng, e.latlng.lat]);
       this.myLayer.clearLayers(); this.myLayer.addData(this.gpx); this._map.panTo([e.latlng.lat, e.latlng.lng])
+      this._map.attributionControl.setPrefix(Math.round(e.speed*3.6)+" km/h")
     }
   },
   upload: function(url) {
